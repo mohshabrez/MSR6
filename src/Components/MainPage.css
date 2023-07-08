@@ -1,0 +1,14 @@
+li {
+    list-style-type: none;
+  }
+  
+  img {
+    width: 20%;
+    height: 60%;
+  }
+  
+  .dishesmenu {
+    display: flex;
+    flex-direction: column;
+  }
+  
