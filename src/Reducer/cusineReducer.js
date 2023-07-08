@@ -26,7 +26,7 @@ export const cusineReducer = (state, action) => {
     case ACTIONS.REVIEWDATA:{
       const rate = action.payLoad.rating
       const comment = action.payLoad.comment
-      const newData = state.restaurantsData.map((res) => Number(res.id) === Number(action.payLoad.user.id) ? res.ratings.push({rate, comment}): res)
+      const newData = state.restaurantsData.map((res) => Number(res.id) === Number(action.payLoad.user.id) ? {...res, ...res.ratings.push({rating: rate, comment:comment})}: res)
       console.log(newData)
       return{...state, resData:[...newData]}
     }
