@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { cuisineData } from "../Data/cusineData";
 import { restaurantsData } from "../Data/cusineData";
+import { act } from "react-dom/test-utils";
 
 
 export const initialState = {
@@ -23,8 +24,11 @@ export const cusineReducer = (state, action) => {
       return { ...state, resData: [...newData] };
     }
     case ACTIONS.REVIEWDATA:{
-      console.log(action.payLoad.user)
-      return{}
+      const rate = action.payLoad.rating
+      const comment = action.payLoad.comment
+      const newData = state.restaurantsData.map((res) => Number(res.id) === Number(action.payLoad.user.id) ? res.ratings.push({rate, comment}): res)
+      console.log(newData)
+      return{...state, resData:[...newData]}
     }
     default: {
       throw new Error("Unknown action " + action.type);
