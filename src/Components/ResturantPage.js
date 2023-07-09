@@ -1,5 +1,6 @@
+import "./ResturantPage.css"
 import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { useDispatch } from "../Context/cusineContext";
 import { ACTIONS } from "../Reducer/cusineReducer";
 
@@ -8,6 +9,7 @@ export function ResturantPage(){
     const[reviewPopUp, setReviewPopUp] = useState(false)
     const[rating, setRating] = useState('')
     const[comment, setComment] = useState('')
+    const navigate = useNavigate()
     const location = useLocation()
     const user = location.state
 
@@ -24,15 +26,20 @@ export function ResturantPage(){
             type: ACTIONS.REVIEWDATA,
             payLoad: {rating:rating, comment:comment, user:user}
         })
+        setReviewPopUp(false)
+        navigate("/")
     }
 
+    const handleCancel = () => {
+        setReviewPopUp(false)
+    }
 
   
     return(
         <>
-        <div>
-        <Link to="/"><span class="material-symbols-outlined">arrow_back</span></Link>
-            <div className="resturantPage">
+        <div className="resturantPage">
+            <Link to="/"><span class="material-symbols-outlined">arrow_back</span></Link>
+            <div className="reselements">
                 <h1>{user.name}</h1>
                 <p>{user.description}</p>
                 <p>{user.address}</p>
@@ -50,15 +57,17 @@ export function ResturantPage(){
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      marginTop:"10rem",
-                      marginLeft:"5rem"
+                      marginTop:"1rem",
+                      marginLeft:"25rem",
+                      borderRadius:"10px"
                     }}
                   >
-                    <div>
-                        <span class="material-symbols-outlined">cancel</span>
+                    <div className="popUp">
+                        <span class="material-symbols-outlined" onClick={handleCancel}>cancel</span>
                         <h3>Add a review</h3>
                         <label> Ratings:
                             <select onChange={(e) => handleRating(e)}>
+                                <option value="">Select</option>
                                 <option value="4.5">4.5+</option>
                                 <option value="4.0">4.0+</option>
                                 <option value="3.5">3.5+</option>
@@ -74,18 +83,20 @@ export function ResturantPage(){
                     
                     </div>
                 )}
-                <div>
+                <div className="reviews">
                     <h1>Reviews</h1>
+                    <div className="reviewelements">
                     {user.ratings.map((rate) => {
                         return(
                             <ul>
                                 <img src={rate.pp} />
-                                <p>{rate.revName}</p>
+                                <h5>{rate.revName}</h5>
                                 <p>{rate.comment}</p>
-                                <p>{rate.rating}</p>
+                                <button>{rate.rating}<span class="material-symbols-outlined">star</span></button>
                             </ul>
                         )
                     })}
+                    </div>
                 </div>
             </div>
         </div>

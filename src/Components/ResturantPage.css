@@ -1,0 +1,77 @@
+.resturantPage{
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.reselements{
+    display: flex;
+    flex-direction: column;
+    line-height: 0.1rem;
+}
+
+
+.reselements button{
+    width: 10%;
+    background-color: #C53030;
+ padding: 0.5rem;
+ color: #fff;
+ border: none;
+ border-radius: 0.3rem;
+ cursor: pointer;
+}
+
+.reviews{
+    margin-top: 1rem;
+}
+
+.reviews h1{
+    text-decoration: underline;
+}
+
+
+.reviewelements ul img{
+    width: 4%;
+    border-radius: 50%;
+}
+
+.reviewelements ul h5{
+    margin-left: 0.5rem;
+}
+
+.reviewelements ul p{
+    position: relative;
+    top: -4rem;
+    left: 6rem;
+    font-weight: bold;
+}
+
+.reviewelements ul button{
+   display: flex;
+   float: right;
+   margin-top: -7rem;
+   margin-right: 25rem;
+   background-color: green;
+   width: 5%;
+   font-size: medium;
+   font-weight: bold;
+}
+
+.reviewelements ul button span{
+    margin-left: 0.3rem;
+    margin-top: -0.3rem;
+}
+
+.popUp{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.popUp span{
+    margin-left: -3rem;
+}
+
+.popUp button{
+    width: fit-content;
+}
